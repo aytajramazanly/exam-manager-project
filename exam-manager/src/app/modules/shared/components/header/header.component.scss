@@ -1,0 +1,12 @@
+.header{
+    padding: 28px 14px;
+    .title a{
+        font-size: 24px;
+    }
+    .row,
+    .navigation{
+        align-items: center;
+    }
+    border-top: 1px solid #dee2e6;
+    background-color: white;
+}

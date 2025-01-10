@@ -1,1 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/scss/bootstrap";
+
+:root {
+  --navigation-height: 80px;
+  --footer-height: 60px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  .app-root {
+    min-height: 100vh;
+  }
+  
+  html,
+  body {
+    margin: 0;
+    height: 100%;
+    background-color: #f5f6fa !important;
+  }
+
+  a{
+    text-decoration: none;
+    color: rgb(67, 87, 121);
+    font-weight: 500;
+
+    &:hover,  &.active{
+      color: rgb(20, 82, 175);
+    }
+    &.active{
+      font-weight: 600;
+    }
+  }
+
+  section{
+    .section-header{
+      padding: 20px 0;
+    }
+
+    .section-content{
+      border: 1px solid #dbdfea;
+      border-radius: 5px;
+      background-color: white;
+    }
+  }
+
+ 
