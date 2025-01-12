@@ -1,4 +1,7 @@
 @import "bootstrap/scss/bootstrap";
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import '../node_modules/ngx-toastr/toastr-bs5-alert.scss';
+
 
 :root {
   --navigation-height: 80px;
@@ -48,4 +51,30 @@
     }
   }
 
+  .action-btn{
+      display: flex;
+      border: 1px solid #dbdfea !important;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      height: 40px;
+      width: 40px !important;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.5s;
+      color: #526484;
+      text-decoration: none;
+      font-size: 18px;
+      background-color: #fff;
+
+      img{
+        max-width: 14px;
+      }
+  }
+
+  .table-container{
+    padding: 20px 0;
+  }
  
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

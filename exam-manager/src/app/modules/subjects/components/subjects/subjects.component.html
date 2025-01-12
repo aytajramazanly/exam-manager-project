@@ -1,3 +1,47 @@
 <section>
-    <p>subjects works!</p>
+  <app-page-head [title]="'Dərslər'" [createRoute]="'subjects'"></app-page-head>
+
+  <div class="table-container">
+    <table mat-table [dataSource]="subjects" class="mat-elevation-z8 demo-table">
+      <!-- Code Column -->
+      <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef> Code </th>
+        <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Grade Column -->
+      <ng-container matColumnDef="grade">
+        <th mat-header-cell *matHeaderCellDef> Grade </th>
+        <td mat-cell *matCellDef="let element"> {{element.grade}} </td>
+      </ng-container>
+
+      <!-- Teacher Name Column -->
+      <ng-container matColumnDef="teacherName">
+        <th mat-header-cell *matHeaderCellDef> Teacher </th>
+        <td mat-cell *matCellDef="let element"> {{element.teacherFirstName}} {{element.teacherLastName}} </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element" class="text-end"> 
+          <a [routerLink]="['/','subjects','edit', element.id]" mat-icon-button aria-label="Example icon button with a menu icon">
+            <mat-icon color="primary">edit</mat-icon>
+          </a>  
+          <a [routerLink]="['/','subjects','view', element.id]" mat-icon-button aria-label="Example icon button with a menu icon">
+            <mat-icon color="primary">visibility</mat-icon>
+          </a>  
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
 </section>

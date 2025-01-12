@@ -1,0 +1,16 @@
+<div class="d-flex flex-row justify-content-between align-items-center page-head">
+    <h3 class="m-0">{{title}}</h3>
+    <div class="tools">
+        @if(createRoute){
+            <a [routerLink]="['/', createRoute, 'create', ]" class="action-btn">
+                <img src="icons/create.svg" alt="">
+            </a>
+        }
+        
+       @if (backRoute) {
+        <a [routerLink]="backRoute" class="action-btn">
+            <mat-icon>arrow_back</mat-icon>
+        </a>
+       }
+    </div>
+</div>
