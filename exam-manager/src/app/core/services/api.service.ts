@@ -3,9 +3,6 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 
-@Injectable({
-  providedIn: 'root'
-})
 export class ApiService {
 
   protected apiUrl = environment.apiUrl;
@@ -19,7 +16,7 @@ export class ApiService {
     return this.http.get<T>(`${this.url}${this.getActionValue(action)}`);
   }
 
-  getById<T>(id: string, action: string = ""): Observable<T> {
+  getById<T>(id: number, action: string = ""): Observable<T> {
     return this.http.get<T>(`${this.url}${this.getActionValue(action)}/${id}`);
   }
 
@@ -31,11 +28,11 @@ export class ApiService {
     return this.http.post<T>(`${this.url}${this.getActionValue(action)}`, item);
   }
 
-  put<T>(id: string, itemToUpdate: Object, action: string = ""): Observable<T> {
+  put<T>(id: number, itemToUpdate: Object, action: string = ""): Observable<T> {
     return this.http.put<T>(`${this.url}${this.getActionValue(action)}/${id}`, itemToUpdate);
   }
 
-  delete<T>(id: string, action: string = ""): Observable<T> {
+  delete<T>(id: number, action: string = ""): Observable<T> {
     return this.http.delete<T>(`${this.url}${this.getActionValue(action)}/${id}`);
   }
 
