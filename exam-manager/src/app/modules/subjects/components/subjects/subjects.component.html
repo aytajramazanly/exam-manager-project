@@ -37,6 +37,9 @@
           <a [routerLink]="['/','subjects','view', element.id]" mat-icon-button aria-label="Example icon button with a menu icon">
             <mat-icon color="primary">visibility</mat-icon>
           </a>  
+          <button (click)="remove(element.id)" mat-icon-button >
+            <mat-icon color="primary">delete</mat-icon>
+          </button>  
         </td>
       </ng-container>
 
