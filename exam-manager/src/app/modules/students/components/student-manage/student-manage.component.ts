@@ -1,37 +1,37 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataManageModes } from '../../../../core/enums/manage-mode.enum';
-import { ManageModeService } from '../../../../core/services/manage-mode.service';
-import { ISubject } from '../../../../core/interfaces/subject.interface';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormModel } from '../../../../core/utils/form.model';
-import { ICreateSubject } from '../../../../core/interfaces/create-subject.interface';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import {MatInputModule} from '@angular/material/input'
-import {MatButtonModule} from '@angular/material/button';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, takeUntil } from 'rxjs';
-import { SubjectService } from '../../../../core/services/subject.service';
 import { UnsubscriableBaseDirective } from '../../../../core/directives/unsubscriable-base.directive';
+import { DataManageModes } from '../../../../core/enums/manage-mode.enum';
+import { ICreateStudent } from '../../../../core/interfaces/create-student.interface';
+import { IStudent } from '../../../../core/interfaces/student.interface';
+import { ManageModeService } from '../../../../core/services/manage-mode.service';
+import { StudentService } from '../../../../core/services/student.service';
+import { FormModel } from '../../../../core/utils/form.model';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { PageHeadComponent } from '../../../shared/components/page-head/page-head.component';
 
 @Component({
-  selector: 'app-subject-manage',
+  selector: 'app-student-manage',
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatButtonModule, PageHeadComponent],
-  templateUrl: './subject-manage.component.html',
-  styleUrl: './subject-manage.component.scss'
+  templateUrl: './student-manage.component.html',
+  styleUrl: './student-manage.component.scss'
 })
-export class SubjectManageComponent extends UnsubscriableBaseDirective implements OnInit {
+export class StudentManageComponent extends UnsubscriableBaseDirective implements OnInit {
   manageMode: DataManageModes | undefined;
-  subject: ISubject | undefined;
+  student: IStudent | undefined;
   itemForm!: FormGroup;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private manageModeService: ManageModeService,
-    private subjectService: SubjectService,
+    private studentService: StudentService,
     private formBuilder: FormBuilder,
     private toastService: ToastrService,
     private router: Router
@@ -49,22 +49,22 @@ export class SubjectManageComponent extends UnsubscriableBaseDirective implement
   }
 
   private initializeData(): void {
-    this.subject = this.activatedRoute.snapshot.data['subject'];
+    this.student = this.activatedRoute.snapshot.data['student'];
   }
 
   private createForm(mode: DataManageModes | undefined): FormGroup {
     if (mode === DataManageModes.Create) {
       return this.createDataFormGroup();
-    } else {
-      return this.updateDataFormGroup(this.subject);
+    } else  {
+      return this.updateDataFormGroup(this.student);
     }
     return this.formBuilder.group({});
   }
 
-  private createDataFormGroup(): FormGroup {
-    const itemForm: FormModel<ICreateSubject> = {
-      code: [null, [Validators.required]],
-      name: [null, [Validators.required, Validators.maxLength(30)]],
+ private createDataFormGroup(): FormGroup {
+    const itemForm: FormModel<ICreateStudent> = {
+      firstName: [null, [Validators.required, Validators.maxLength(30)]],
+      lastName: [null, [Validators.required, Validators.maxLength(30)]],
       grade: [
         null,
         [
@@ -74,19 +74,23 @@ export class SubjectManageComponent extends UnsubscriableBaseDirective implement
           Validators.max(99),
         ],
       ],
-      teacherFirstName: [null, [Validators.required, Validators.maxLength(20)]],
-      teacherLastName: [null, [Validators.required, Validators.maxLength(20)]],
+      number: [null, [
+        Validators.required,
+        Validators.pattern(/^\d{1,5}$/),
+        Validators.min(1),
+        Validators.max(99),
+      ],]
     };
     return this.formBuilder.group(itemForm);
   }
 
-  private updateDataFormGroup(subject: ISubject | undefined): FormGroup {
-    const itemForm: FormModel<ISubject> = {
-      id: [subject?.id],
-      code: [subject?.code, [Validators.required, Validators.maxLength(3)]],
-      name: [subject?.name, [Validators.required, Validators.maxLength(30)]],
+  private updateDataFormGroup(student: IStudent | undefined): FormGroup {
+    const itemForm: FormModel<IStudent> = {
+      id:[student?.id],
+      firstName: [student?.firstName, [Validators.required, Validators.maxLength(30)]],
+      lastName: [student?.lastName, [Validators.required, Validators.maxLength(30)]],
       grade: [
-        subject?.grade,
+        student?.grade,
         [
           Validators.required,
           Validators.pattern(/^\d{1,2}$/),
@@ -94,8 +98,12 @@ export class SubjectManageComponent extends UnsubscriableBaseDirective implement
           Validators.max(99),
         ],
       ],
-      teacherFirstName: [subject?.teacherFirstName, [Validators.required, Validators.maxLength(20)]],
-      teacherLastName: [subject?.teacherLastName, [Validators.required, Validators.maxLength(20)]],
+      number: [student?.number, [
+        Validators.required,
+        Validators.pattern(/^\d{1,5}$/),
+        Validators.min(1),
+        Validators.max(99),
+      ],]
     };
     return this.formBuilder.group(itemForm);
   }
@@ -115,7 +123,7 @@ export class SubjectManageComponent extends UnsubscriableBaseDirective implement
   }
 
   private handleSubmit(): void {
-    let result$: Observable<ISubject> | undefined;
+    let result$: Observable<IStudent> | undefined;
 
     if (this.manageMode === DataManageModes.Edit) {
       result$ = this.update$();
@@ -125,18 +133,18 @@ export class SubjectManageComponent extends UnsubscriableBaseDirective implement
 
     result$?.pipe(takeUntil(this.unsubscribe)).subscribe(res => {
       this.showSuccessMessage();
-      this.router.navigate(['/', 'subjects']);
+      this.router.navigate(['/', 'students']);
     });
   }
 
-  private update$(): Observable<ISubject> {
-    const update: ISubject = this.itemForm.value;
-    return this.subjectService.updateSubject(this.subject!.id, update);
+  private update$(): Observable<IStudent> {
+    const update: IStudent = this.itemForm.value;
+    return this.studentService.updateStudent(this.student!.id, update);
   }
 
-  private create$(): Observable<ISubject> {
-    const create: ICreateSubject = this.itemForm.value;
-    return this.subjectService.addSubject(create);
+  private create$(): Observable<IStudent> {
+    const create: ICreateStudent = this.itemForm.value;
+    return this.studentService.addStudent(create);
   }
 
   private showSuccessMessage(): void {
@@ -146,4 +154,3 @@ export class SubjectManageComponent extends UnsubscriableBaseDirective implement
     this.toastService.success(message, undefined, { timeOut: 3000 });
   }
 }
-

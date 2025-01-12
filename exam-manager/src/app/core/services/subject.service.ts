@@ -29,7 +29,7 @@ export class SubjectService extends ApiService {
     return this.put<any>(id,data)
   }
 
-  removeCSubject(id: number): Observable<any> {
+  removeSubject(id: number): Observable<any> {
     return this.delete(id);
   }
 }
