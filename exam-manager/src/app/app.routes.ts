@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './modules/shared/components/layout/layout.component';
+import { NotFoundComponent } from './modules/shared/components/not-found/not-found.component';
 
 export const routes: Routes = [
     {
@@ -26,4 +27,5 @@ export const routes: Routes = [
         loadChildren: () =>
             import('./modules/exams/exams.module').then((m) => m.ExamsModule),
     },
+    { path: '**', component: NotFoundComponent }
 ];

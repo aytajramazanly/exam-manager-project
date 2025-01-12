@@ -5,25 +5,25 @@
     <table mat-table [dataSource]="subjects" class="mat-elevation-z8 demo-table">
       <!-- Code Column -->
       <ng-container matColumnDef="code">
-        <th mat-header-cell *matHeaderCellDef> Code </th>
+        <th mat-header-cell *matHeaderCellDef> Kod </th>
         <td mat-cell *matCellDef="let element"> {{element.code}} </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <th mat-header-cell *matHeaderCellDef> Adı </th>
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
       </ng-container>
 
       <!-- Grade Column -->
       <ng-container matColumnDef="grade">
-        <th mat-header-cell *matHeaderCellDef> Grade </th>
+        <th mat-header-cell *matHeaderCellDef> Sinif </th>
         <td mat-cell *matCellDef="let element"> {{element.grade}} </td>
       </ng-container>
 
       <!-- Teacher Name Column -->
       <ng-container matColumnDef="teacherName">
-        <th mat-header-cell *matHeaderCellDef> Teacher </th>
+        <th mat-header-cell *matHeaderCellDef> Dərsi verən müəllimin adı </th>
         <td mat-cell *matCellDef="let element"> {{element.teacherFirstName}} {{element.teacherLastName}} </td>
       </ng-container>
 

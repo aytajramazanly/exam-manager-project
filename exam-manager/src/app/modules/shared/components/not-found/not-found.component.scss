@@ -1,0 +1,65 @@
+.not-found-container {
+    height: 100vh;
+    width: 100vw;
+    background-color: #673ab7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+
+        .status-code {
+            font-size: 18vw;
+            line-height: 18vw;
+            text-shadow: 4px 4px 0px #673ab7,
+                -4px 0 0px #673ab7,
+                7px 4px 0 #fff;
+            color: #dfdfdf;
+        }
+
+        .error-message {
+            font-size: 36px;
+            line-height: 44px;
+            color: #fff;
+        }
+    }
+
+    a {
+        margin-top: 30px;
+        color: #fff !important;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 500;
+        transition: 0.4s all;
+        padding: 4px 12px;
+        border-radius: 8px;
+        border: 1px solid #33091d;
+
+        &:hover {
+            background-color: #673ab7;
+        }
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .not-found-container {
+        div {
+
+            .error-message {
+                font-size: 7vw !important;
+                line-height: 10vw !important;
+            }
+        }
+
+        a {
+            font-size: 14px;
+            line-height: 22px;
+        }
+    }
+}

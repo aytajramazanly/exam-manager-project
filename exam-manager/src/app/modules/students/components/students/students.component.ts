@@ -14,7 +14,6 @@ import { IStudent } from '../../../../core/interfaces/student.interface';
   styleUrl: './students.component.scss'
 })
 export class StudentsComponent {
-
   students: IStudent[] = [];
   displayedColumns: string[] = ['number','firstname','lastname','grade', 'actions'];
 

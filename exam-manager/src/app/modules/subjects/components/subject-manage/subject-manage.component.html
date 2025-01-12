@@ -3,38 +3,38 @@
 <form class="d-flex flex-row justify-content-center gap-4 w-100 align-items-center flex-wrap" (ngSubmit)="onSubmit()"
   [formGroup]="itemForm">
   <mat-form-field class="example-full-width col-3">
-    <mat-label>Code</mat-label>
+    <mat-label>Kod</mat-label>
     <input matInput formControlName="code" maxlength="3">
     @if (itemForm.controls["code"].hasError('required')) {
-    <mat-error>Code is <strong>required</strong></mat-error>
+      <mat-error>Bu xana boş ola bilməz</mat-error>
     }
   </mat-form-field>
   <mat-form-field class="example-full-width col-3">
-    <mat-label>Name</mat-label>
+    <mat-label>Dərsin adı</mat-label>
     <input matInput formControlName="name" maxlength="30">
     @if (itemForm.controls["name"].hasError('required')) {
-    <mat-error>Name is <strong>required</strong></mat-error>
+      <mat-error>Bu xana boş ola bilməz</mat-error>
     }
   </mat-form-field>
   <mat-form-field class="example-full-width col-3">
     <mat-label>Grade</mat-label>
     <input matInput formControlName="grade">
     @if (itemForm.controls["grade"].hasError('required')) {
-    <mat-error>Grade is <strong>required</strong></mat-error>
+      <mat-error>Bu xana boş ola bilməz</mat-error>
     }
   </mat-form-field>
   <mat-form-field class="example-full-width col-4">
-    <mat-label>teacherFirstName</mat-label>
+    <mat-label>Müəllimin adı</mat-label>
     <input matInput formControlName="teacherFirstName">
     @if (itemForm.controls["teacherFirstName"].hasError('required')) {
-    <mat-error>teacherFirstName is <strong>required</strong></mat-error>
+      <mat-error>Bu xana boş ola bilməz</mat-error>
     }
   </mat-form-field>
   <mat-form-field class="example-full-width col-4">
-    <mat-label>teacherLastName</mat-label>
+    <mat-label>Müəllimin soyadı</mat-label>
     <input matInput formControlName="teacherLastName">
     @if (itemForm.controls["teacherLastName"].hasError('required')) {
-    <mat-error>teacherLastName is <strong>required</strong></mat-error>
+      <mat-error>Bu xana boş ola bilməz</mat-error>
     }
   </mat-form-field>
 

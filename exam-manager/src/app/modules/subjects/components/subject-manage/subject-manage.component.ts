@@ -58,7 +58,6 @@ export class SubjectManageComponent extends UnsubscriableBaseDirective implement
     } else {
       return this.updateDataFormGroup(this.subject);
     }
-    return this.formBuilder.group({});
   }
 
   private createDataFormGroup(): FormGroup {

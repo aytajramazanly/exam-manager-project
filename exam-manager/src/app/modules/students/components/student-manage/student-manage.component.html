@@ -1,33 +1,33 @@
-<app-page-head class="col-12" [title]="'Dərslər'" [backRoute]="['/','subjects']"></app-page-head>
+<app-page-head class="col-12" [title]="'Şagirdlər'" [backRoute]="['/','students']"></app-page-head>
 
 <form class="d-flex flex-row justify-content-center gap-3 w-100 align-items-center flex-wrap" (ngSubmit)="onSubmit()"
   [formGroup]="itemForm">
   <mat-form-field class="example-full-width col-3">
-    <mat-label>Number</mat-label>
+    <mat-label>Nömrəsi</mat-label>
     <input matInput formControlName="number">
     @if (itemForm.controls["number"].hasError('required')) {
-    <mat-error>Number is <strong>required</strong></mat-error>
+      <mat-error>Bu xana boş ola bilməz</mat-error>
     }
   </mat-form-field>
   <mat-form-field class="example-full-width col-3">
-    <mat-label>Firstname</mat-label>
+    <mat-label>Adı</mat-label>
     <input matInput formControlName="firstName" maxlength="30">
     @if (itemForm.controls["firstName"].hasError('required')) {
-    <mat-error>Firstname is <strong>required</strong></mat-error>
+      <mat-error>Bu xana boş ola bilməz</mat-error>
     }
   </mat-form-field>
   <mat-form-field class="example-full-width col-3">
-    <mat-label>Lastname</mat-label>
+    <mat-label>Soyadı</mat-label>
     <input matInput formControlName="lastName" maxlength="30">
     @if (itemForm.controls["lastName"].hasError('required')) {
-    <mat-error>Lastname is <strong>required</strong></mat-error>
+      <mat-error>Bu xana boş ola bilməz</mat-error>
     }
   </mat-form-field>
   <mat-form-field class="example-full-width col-3">
-    <mat-label>Grade</mat-label>
+    <mat-label>Sinifi</mat-label>
     <input matInput formControlName="grade">
     @if (itemForm.controls["grade"].hasError('required')) {
-    <mat-error>Grade is <strong>required</strong></mat-error>
+      <mat-error>Bu xana boş ola bilməz</mat-error>
     }
   </mat-form-field>
 

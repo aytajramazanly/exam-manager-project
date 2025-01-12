@@ -1,0 +1,48 @@
+<app-page-head class="col-12" [title]="'İmtahanlar'" [backRoute]="['/','exams']"></app-page-head>
+
+<form class="d-flex flex-row justify-content-center gap-3 w-100 align-items-center flex-wrap" (ngSubmit)="onSubmit()"
+  [formGroup]="itemForm">
+  <mat-form-field class="example-full-width col-3">
+    <mat-label>Dərsin kodu</mat-label>
+    <mat-select formControlName="subjectCode">
+      @for (subject of subjects; track subject) {
+        <mat-option [value]="subject.code">{{subject.code}}</mat-option>
+      }
+    </mat-select>
+    @if (itemForm.controls["subjectCode"].hasError('required')) {
+      <mat-error>Bu xana boş ola bilməz</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field class="example-full-width col-3">
+    <mat-label>Tələbənin nömrəsi</mat-label>
+    <mat-select formControlName="studentNumber">
+      @for (student of students; track student) {
+        <mat-option [value]="student.number">{{student.number}} - {{student.firstName}} {{student.lastName}}</mat-option>
+      }
+    </mat-select>
+    @if (itemForm.controls["subjectCode"].hasError('required')) {
+      <mat-error>Bu xana boş ola bilməz</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field class="example-full-width col-3">
+    <mat-label>İmtahan Tarixi</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="examDate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    @if (itemForm.controls["examDate"].hasError('required')) {
+      <mat-error>Bu xana boş ola bilməz</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field class="example-full-width col-3">
+    <mat-label>Qiymət</mat-label>
+    <input matInput formControlName="score" type="number">
+    @if (itemForm.controls["score"].hasError('required')) {
+      <mat-error>Bu xana boş ola bilməz</mat-error>
+    }
+  </mat-form-field>
+
+  <div class="submit-btn col-12 text-center">
+    <button mat-flat-button type="submit">Təsdiqlə</button>
+  </div>
+</form>
